@@ -1,6 +1,8 @@
 # wj32:mysql
 Reactive MySQL for Meteor
 
+Provides Meteor integration of the [`mysql-live-select` NPM module](https://github.com/wj32/mysql-live-select), bringing reactive `SELECT` statement result sets from MySQL >= 5.1.15.
+
 NOTE: The version of mysql-live-select used by this package differs from
 numtel's original package in that result sets are treated as dictionaries rather
 than arrays. In this version, the identity of each row is determined by a
@@ -9,18 +11,7 @@ than arrays. In this version, the identity of each row is determined by a
 `MysqlSubscription` has been removed. To subscribe to a `LiveMysqlSelect`
 publication, use `Meteor.subscribe()`.
 
-Provides Meteor integration of the [`mysql-live-select` NPM module](https://github.com/wj32/mysql-live-select), bringing reactive `SELECT` statement result sets from MySQL >= 5.1.15.
-
-> If you do not have MySQL server already installed, you may use the [`numtel:mysql-server` Meteor Package](https://github.com/numtel/meteor-mysql-server) to bundle the MySQL server directly to your Meteor application.
-
-* [`numtel:pg` Reactive PostgreSQL for Meteor](https://github.com/numtel/meteor-pg)
-* [How to publish joined queries that update efficiently](https://github.com/numtel/meteor-mysql/wiki/Publishing-Efficient-Joined-Queries)
-* [Leaderboard example modified to use MySQL](https://github.com/numtel/meteor-mysql-leaderboard)
-* [Talk at Meteor Devshop SF, December 2014](https://www.youtube.com/watch?v=EJzulpXZn6g)
-
-> This documentation covers `wj32:mysql` **>= 1.0.0**. For older versions (0.1.0 - 0.1.14) that used the old difference calculator, see the [the tree from this commit](https://github.com/numtel/meteor-mysql/tree/9edd9ca83388cc82496f87e91153a4a9f51fb5de). Also see the [old documentation for `mysql-live-select` that matches these older versions](https://github.com/numtel/mysql-live-select/tree/89691160b7e1fbfde1ae7055980668ceb4182f8a).
-
-> For the oldest versions (< 0.1.0) that included the trigger poll table that worked with MySQL < 5.1.15, see the [old branch](https://github.com/numtel/meteor-mysql/tree/old).
+For more information, see the original [`numtel:mysql` package](https://github.com/numtel/meteor-mysql).
 
 ## Server Implements
 
