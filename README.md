@@ -1,7 +1,15 @@
-# numtel:mysql [![Build Status](https://travis-ci.org/numtel/meteor-mysql.svg?branch=master)](https://travis-ci.org/numtel/meteor-mysql)
+# wj32:mysql
 Reactive MySQL for Meteor
 
-Provides Meteor integration of the [`mysql-live-select` NPM module](https://github.com/numtel/mysql-live-select), bringing reactive `SELECT` statement result sets from MySQL >= 5.1.15.
+NOTE: The version of mysql-live-select used by this package differs from
+numtel's original package in that result sets are treated as dictionaries rather
+than arrays. In this version, the identity of each row is determined by a
+`LiveMysqlKeySelector` that is passed into the `select` function.
+
+`MysqlSubscription` has been removed. To subscribe to a `LiveMysqlSelect`
+publication, use `Meteor.subscribe()`.
+
+Provides Meteor integration of the [`mysql-live-select` NPM module](https://github.com/wj32/mysql-live-select), bringing reactive `SELECT` statement result sets from MySQL >= 5.1.15.
 
 > If you do not have MySQL server already installed, you may use the [`numtel:mysql-server` Meteor Package](https://github.com/numtel/meteor-mysql-server) to bundle the MySQL server directly to your Meteor application.
 
@@ -10,13 +18,13 @@ Provides Meteor integration of the [`mysql-live-select` NPM module](https://gith
 * [Leaderboard example modified to use MySQL](https://github.com/numtel/meteor-mysql-leaderboard)
 * [Talk at Meteor Devshop SF, December 2014](https://www.youtube.com/watch?v=EJzulpXZn6g)
 
-> This documentation covers `numtel:mysql` **>= 1.0.0**. For older versions (0.1.0 - 0.1.14) that used the old difference calculator, see the [the tree from this commit](https://github.com/numtel/meteor-mysql/tree/9edd9ca83388cc82496f87e91153a4a9f51fb5de). Also see the [old documentation for `mysql-live-select` that matches these older versions](https://github.com/numtel/mysql-live-select/tree/89691160b7e1fbfde1ae7055980668ceb4182f8a).
+> This documentation covers `wj32:mysql` **>= 1.0.0**. For older versions (0.1.0 - 0.1.14) that used the old difference calculator, see the [the tree from this commit](https://github.com/numtel/meteor-mysql/tree/9edd9ca83388cc82496f87e91153a4a9f51fb5de). Also see the [old documentation for `mysql-live-select` that matches these older versions](https://github.com/numtel/mysql-live-select/tree/89691160b7e1fbfde1ae7055980668ceb4182f8a).
 
 > For the oldest versions (< 0.1.0) that included the trigger poll table that worked with MySQL < 5.1.15, see the [old branch](https://github.com/numtel/meteor-mysql/tree/old).
 
 ## Server Implements
 
-This package provides the `LiveMysql` class as defined in the [`mysql-live-select` NPM package](https://github.com/numtel/mysql-live-select). Be sure to follow the installation instructions for configuring your MySQL server to output the binary log.
+This package provides the `LiveMysql` class as defined in the [`mysql-live-select` NPM package](https://github.com/wj32/mysql-live-select). Be sure to follow the installation instructions for configuring your MySQL server to output the binary log.
 
 For operations other than `SELECT`, like `UPDATE` and `INSERT`, an active [`node-mysql`](https://github.com/felixge/node-mysql) connection is exposed on the `LiveMysql.db` property.
 
@@ -30,67 +38,10 @@ var liveDb = new LiveMysql(Meteor.settings.mysql);
 Meteor.publish('allPlayers', function(){
   return liveDb.select(
     `SELECT * FROM players ORDER BY score DESC`,
+    LiveMysqlKeySelector.Index(),
     [ { table: 'players' } ]
   );
 });
-```
-
-## Client/Server Implements
-
-### `MysqlSubscription([connection,] name, [args...])`
-
-Constructor for subscribing to a published select statement. No extra call to `Meteor.subscribe()` is required. Specify the name of the subscription along with any arguments.
-
-The first argument, `connection`, is optional. If connecting to a different Meteor server, pass the DDP connection object in this first argument. If not specified, the first argument becomes the name of the subscription (string) and the default Meteor server connection will be used.
-
-The prototype inherits from `Array` and is extended with the following methods:
-
-Name | Description
------|--------------------------
-`change([args...])` | Change the subscription's arguments. Publication name and connection are preserved.
-`addEventListener(eventName, listener)` | Bind a listener function to this subscription
-`removeEventListener(eventName)` | Remove listener functions from an event queue
-`dispatchEvent(eventName, [args...])` | Call the listeners for a given event, returns boolean
-`depend()` | Call from inside of a Template helper function to ensure reactive updates
-`reactive()` | Same as `depend()` except returns self
-`changed()`| Signal new data in the subscription
-`ready()` | Return boolean value corresponding to subscription fully loaded
-`stop()` | Stop updates for this subscription
-
-**Notes:**
-
-* `changed()` is automatically called when the query updates and is most likely to only be called manually from a method stub on the client.
-* Event listener methods are similar to native methods. For example, if an event listener returns `false` exactly, it will halt listeners of the same event that have been added previously. A few differences do exist though to make usage easier in this context:
-  * The event name may also contain an identifier suffix using dot namespacing (e.g. `update.myEvent`) to allow removing/dispatching only a subset of listeners.
-  * `removeEventListener()` and `dispatchEvent()` both refer to listeners by name only. Regular expessions allowed.
-  * `useCapture` argument is not available.
-
-#### Event Types
-
-Name | Listener Arguments | Description
------|-------------------|-----------------------
-`update` | `diff, data` | Data has been updated according to the differences in the `diff` object.
-`reset` | `msg` | Subscription reset (most likely due to code-push), before update
-
-## Closing connections between hot code-pushes
-
-With Meteor's hot code-push feature, a new connection the database server is requested with each restart. In order to close old connections, a handler to your application process's `SIGTERM` signal event must be added that calls the `end()` method on each `LiveMysql` instance in your application. Also, a handler for `SIGINT` can be used to close connections on exit.
-
-On the server-side of your application, add event handlers like this:
-
-```javascript
-
-var liveDb = new LiveMysql(Meteor.settings.mysql);
-
-var closeAndExit = function() {
-  liveDb.end();
-  process.exit();
-};
-
-// Close connections on hot code push
-process.on('SIGTERM', closeAndExit);
-// Close connections on exit (ctrl + c)
-process.on('SIGINT', closeAndExit);
 ```
 
 ## Tests / Benchmarks

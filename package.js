@@ -1,13 +1,13 @@
 Package.describe({
-  name: 'numtel:mysql',
+  name: 'wj32:mysql',
   summary: 'MySQL support with Reactive Select Subscriptions',
-  version: '1.0.3',
-  git: 'https://github.com/numtel/meteor-mysql.git'
+  version: '1.1.0',
+  git: 'https://github.com/wj32/meteor-mysql.git'
 });
 
 Npm.depends({
   'mysql': '2.8.0',
-  'mysql-live-select': '1.0.3'
+  'mysql-live-select': 'https://github.com/wj32/mysql-live-select/tarball/1bc76a64091be5c3f0d5f37b9f3b29792d5eba56'
 });
 
 Package.onUse(function(api) {
@@ -32,7 +32,7 @@ Package.onTest(function(api) {
     'http',
     'grigio:babel@0.1.1',
     'simple:rest@0.2.3',
-    'numtel:mysql',
+    'wj32:mysql',
   ]);
   api.use('test-helpers'); // Did not work concatenated above
   api.addFiles([
