@@ -20,9 +20,6 @@ Package.onUse(function(api) {
 
   api.addFiles('lib/LiveMysql.js', 'server');
   api.export('LiveMysql', 'server');
-
-  api.addFiles('lib/MysqlSubscription.js');
-  api.export('MysqlSubscription');
 });
 
 Package.onTest(function(api) {
