@@ -3,13 +3,9 @@ Reactive MySQL for Meteor
 
 Provides Meteor integration of the [`mysql-live-select` NPM module](https://github.com/wj32/mysql-live-select), bringing reactive `SELECT` statement result sets from MySQL >= 5.1.15.
 
-NOTE: The version of mysql-live-select used by this package differs from
-numtel's original package in that result sets are treated as dictionaries rather
-than arrays. In this version, the identity of each row is determined by a
-`LiveMysqlKeySelector` that is passed into the `select` function.
+NOTE: The version of mysql-live-select used by this package differs from numtel's original package in that result sets are treated as dictionaries rather than arrays. In this version, the identity of each row is determined by a `LiveMysqlKeySelector` that is passed into the `select` function.
 
-`MysqlSubscription` has been removed. To subscribe to a `LiveMysqlSelect`
-publication, use `Meteor.subscribe()`.
+`MysqlSubscription` has been removed. To subscribe to a `LiveMysqlSelect` publication, use `Meteor.subscribe()`.
 
 For more information, see the original [`numtel:mysql` package](https://github.com/numtel/meteor-mysql).
 
