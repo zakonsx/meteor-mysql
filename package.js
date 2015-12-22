@@ -1,7 +1,7 @@
 Package.describe({
   name: 'wj32:mysql',
   summary: 'MySQL support with Reactive Select Subscriptions',
-  version: '1.1.0',
+  version: '1.1.1',
   git: 'https://github.com/wj32/meteor-mysql.git'
 });
 
