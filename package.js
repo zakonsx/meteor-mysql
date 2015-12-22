@@ -7,7 +7,7 @@ Package.describe({
 
 Npm.depends({
   'mysql': '2.8.0',
-  'mysql-live-select': 'https://github.com/wj32/mysql-live-select/tarball/1bc76a64091be5c3f0d5f37b9f3b29792d5eba56'
+  'mysql-live-select': 'https://github.com/wj32/mysql-live-select/tarball/014544f2bb863e223f4eb8a37877a84bce89a455'
 });
 
 Package.onUse(function(api) {
