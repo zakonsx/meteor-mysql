@@ -1,13 +1,13 @@
 Package.describe({
   name: 'wj32:mysql',
   summary: 'MySQL support with Reactive Select Subscriptions',
-  version: '1.1.3',
+  version: '1.1.4',
   git: 'https://github.com/wj32/meteor-mysql.git'
 });
 
 Npm.depends({
   'mysql': '2.8.0',
-  'mysql-live-select': 'https://github.com/wj32/mysql-live-select/tarball/db62d56c941c7028be4d23a945ce9ae8a8d8d101'
+  'mysql-live-select': 'https://github.com/wj32/mysql-live-select/tarball/30bd1a4157f2688ba8f3c0cb9718098aa9e89348'
 });
 
 Package.onUse(function(api) {
