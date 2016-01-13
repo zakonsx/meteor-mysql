@@ -13,7 +13,7 @@ For more information, see the original [`numtel:mysql` package](https://github.c
 
 This package provides the `LiveMysql` class as defined in the [`mysql-live-select` NPM package](https://github.com/wj32/mysql-live-select). Be sure to follow the installation instructions for configuring your MySQL server to output the binary log.
 
-For operations other than `SELECT`, like `UPDATE` and `INSERT`, an active [`node-mysql`](https://github.com/felixge/node-mysql) connection is exposed on the `LiveMysql.db` property.
+For operations other than `SELECT`, like `UPDATE` and `INSERT`, an active [`node-mysql`](https://github.com/felixge/node-mysql) connection (or pool) is exposed via the `LiveMysql.db` (or `LiveMysql.pool`) property.
 
 ### `LiveMysql.prototype.select()`
 
@@ -25,6 +25,7 @@ var liveDb = new LiveMysql(Meteor.settings.mysql);
 Meteor.publish('allPlayers', function(){
   return liveDb.select(
     `SELECT * FROM players ORDER BY score DESC`,
+    null,
     LiveMysqlKeySelector.Index(),
     [ { table: 'players' } ]
   );
