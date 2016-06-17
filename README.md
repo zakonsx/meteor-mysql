@@ -1,9 +1,11 @@
-# wj32:mysql
+# vlasky:mysql
 Reactive MySQL for Meteor
 
-Provides Meteor integration of the [`mysql-live-select` NPM module](https://github.com/wj32/mysql-live-select), bringing reactive `SELECT` statement result sets from MySQL >= 5.1.15.
+Provides Meteor integration of the [`mysql-live-select` NPM module](https://github.com/vlasky/mysql-live-select), bringing reactive `SELECT` statement result sets from MySQL >= 5.1.15.
 
 NOTE: The version of mysql-live-select used by this package differs from numtel's original package in that result sets are treated as dictionaries rather than arrays. In this version, the identity of each row is determined by a `LiveMysqlKeySelector` that is passed into the `select` function.
+
+NOTE: The version of mysql-live-select used by this package differs from wj32's forked package in that MySQL prepared statements are used instead of normal queries, for improved performance.
 
 `MysqlSubscription` has been removed. To subscribe to a `LiveMysqlSelect` publication, use `Meteor.subscribe()`.
 
@@ -11,7 +13,7 @@ For more information, see the original [`numtel:mysql` package](https://github.c
 
 ## Server Implements
 
-This package provides the `LiveMysql` class as defined in the [`mysql-live-select` NPM package](https://github.com/wj32/mysql-live-select). Be sure to follow the installation instructions for configuring your MySQL server to output the binary log.
+This package provides the `LiveMysql` class as defined in the [`mysql-live-select` NPM package](https://github.com/vlasky/mysql-live-select). Be sure to follow the installation instructions for configuring your MySQL server to output the binary log.
 
 For operations other than `SELECT`, like `UPDATE` and `INSERT`, an active [`node-mysql`](https://github.com/felixge/node-mysql) connection (or pool) is exposed via the `LiveMysql.db` (or `LiveMysql.pool`) property.
 
