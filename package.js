@@ -2,7 +2,7 @@ Package.describe({
   name: 'vlasky:mysql',
   summary: 'MySQL support with Reactive Select Subscriptions',
   version: '1.2.0',
-  git: 'https://github.com/wj32/meteor-mysql.git'
+  git: 'https://github.com/vlasky/meteor-mysql.git'
 });
 
 Npm.depends({
@@ -33,7 +33,7 @@ Package.onTest(function(api) {
     'http',
     'grigio:babel@0.1.1',
     'simple:rest@0.2.3',
-    'wj32:mysql',
+    'vlasky:mysql',
   ]);
   api.use('test-helpers'); // Did not work concatenated above
   api.addFiles([
