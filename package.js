@@ -1,15 +1,15 @@
 Package.describe({
   name: 'vlasky:mysql',
   summary: 'MySQL support with Reactive Select Subscriptions',
-  version: '1.2.1',
+  version: '1.2.2',
   git: 'https://github.com/vlasky/meteor-mysql.git'
 });
 
 Npm.depends({
   'lodash': '4.14.0',
   'mysql': '2.11.1',
-  'mysql2': '1.0.0-rc.8',
-  'mysql-live-select': 'https://github.com/vlasky/mysql-live-select/tarball/cc1455ec8a8069e8182d4f24e230e1fa1abe858b'
+  'mysql2': '1.1.1',
+  'mysql-live-select': 'https://github.com/vlasky/mysql-live-select/tarball/bf237e017074f232a52050f69d92eb108624e909'
 });
 
 Package.onUse(function(api) {
