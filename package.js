@@ -9,7 +9,7 @@ Npm.depends({
   'lodash': '4.17.1',
   'mysql': '2.12.0',
   'mysql2': '1.1.2',
-  'mysql-live-select': 'https://github.com/vlasky/mysql-live-select/tarball/b058854d5ac2b0f079bfae6dafbeae9f4ed08791'
+  'mysql-live-select': 'https://github.com/vlasky/mysql-live-select/tarball/6616477cd5b069eb196bd10e3965f7fa732edc5a'
 });
 
 Package.onUse(function(api) {
