@@ -1,7 +1,7 @@
 Package.describe({
   name: 'vlasky:mysql',
   summary: 'MySQL support with Reactive Select Subscriptions',
-  version: '1.2.4',
+  version: '1.2.5',
   git: 'https://github.com/vlasky/meteor-mysql.git'
 });
 
