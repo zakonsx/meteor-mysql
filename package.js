@@ -13,7 +13,7 @@ Npm.depends({
 });
 
 Package.onUse(function(api) {
-  api.versionsFrom('1.3');
+  api.versionsFrom(['1.3', '1.4']);
   api.use([
     'ecmascript',
     'ddp',
@@ -50,6 +50,9 @@ Package.onTest(function(api) {
   api.addFiles([
     'test/helpers/queryEx.js',
     'test/helpers/querySequence.js',
+  ], 'server');
+
+  api.addAssets([
     'test/index.es6'
   ], 'server');
 
