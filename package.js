@@ -1,7 +1,7 @@
 Package.describe({
   name: 'vlasky:mysql',
   summary: 'MySQL support with Reactive Select Subscriptions',
-  version: '1.2.5',
+  version: '1.2.6',
   git: 'https://github.com/vlasky/meteor-mysql.git'
 });
 
@@ -13,25 +13,26 @@ Npm.depends({
 });
 
 Package.onUse(function(api) {
-  api.versionsFrom('1.0');
+  api.versionsFrom('1.3');
   api.use([
+    'ecmascript',
     'ddp',
     'tracker'
   ]);
 
-  api.addFiles('lib/LiveMysql.js', 'server');
+  api.mainModule('lib/LiveMysql.js', 'server');
   api.export('LiveMysql', 'server');
 });
 
 Package.onTest(function(api) {
   api.use([
     'tinytest',
+    'ecmascript',
     'templating',
     'underscore',
     'autopublish',
     'insecure',
     'http',
-    'grigio:babel@0.1.1',
     'simple:rest@0.2.3',
     'vlasky:mysql',
   ]);
