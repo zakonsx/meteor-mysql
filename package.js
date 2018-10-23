@@ -1,7 +1,7 @@
 Package.describe({
   name: 'zakons:meteor-mysql',
   summary: 'MySQL support with Reactive Select Subscriptions',
-  version: '1.2.6',
+  version: '1.2.7',
   git: 'https://github.com/zakonsx/meteor-mysql'
 });
 
@@ -34,7 +34,7 @@ Package.onTest(function(api) {
     'insecure',
     'http',
     'simple:rest@0.2.3',
-    'zakonsx:meteor-mysql',
+    'zakons:meteor-mysql',
   ]);
   api.use('test-helpers'); // Did not work concatenated above
   api.addFiles([
