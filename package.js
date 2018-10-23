@@ -1,19 +1,19 @@
 Package.describe({
-  name: 'vlasky:mysql',
+  name: 'zakonsx:meteor-mysql',
   summary: 'MySQL support with Reactive Select Subscriptions',
   version: '1.2.6',
-  git: 'https://github.com/vlasky/meteor-mysql.git'
+  git: 'https://github.com/zakonsx/meteor-mysql'
 });
 
 Npm.depends({
   'lodash': '4.17.1',
-  'mysql': '2.12.0',
+  'mysql': '2.15.0',
   'mysql2': '1.1.2',
-  'mysql-live-select': 'https://github.com/vlasky/mysql-live-select/tarball/6616477cd5b069eb196bd10e3965f7fa732edc5a'
+  'mysql-live-select': 'https://github.com/zakonsx/mysql-live-select/archive/v0.0.19.tar.gz'
 });
 
 Package.onUse(function(api) {
-  api.versionsFrom(['1.3', '1.4']);
+  api.versionsFrom(['1.3', '1.8']);
   api.use([
     'ecmascript',
     'ddp',
@@ -34,7 +34,7 @@ Package.onTest(function(api) {
     'insecure',
     'http',
     'simple:rest@0.2.3',
-    'vlasky:mysql',
+    'zakonsx:meteor-mysql',
   ]);
   api.use('test-helpers'); // Did not work concatenated above
   api.addFiles([
