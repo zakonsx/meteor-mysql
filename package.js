@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'zakonsx:meteor-mysql',
+  name: 'zakons:meteor-mysql',
   summary: 'MySQL support with Reactive Select Subscriptions',
   version: '1.2.6',
   git: 'https://github.com/zakonsx/meteor-mysql'
